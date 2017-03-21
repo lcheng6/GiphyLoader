@@ -13,6 +13,7 @@ var selectedAnimal = "";
 var animalSearchOffset = 0;
 var giphySearchReady = true;
 
+var animalButtonClicked; 
 
 var submitBtnClick = function(event) {
 	event.preventDefault();
@@ -20,13 +21,10 @@ var submitBtnClick = function(event) {
 	if (animal) {
 		console.log('new animal: ' + animal);
 		selectedAnimal = animal;
-		('.image-grid').empty()
 		var button = $('<button>')
 			.addClass('btn').addClass('btn-info')
 			.text(animal)
-			.click(function() {
-				console.log($(this).text())
-			})
+			.click(animalButtonClicked);
 		$('#animalButtons').append(button);
 	}
 
@@ -103,7 +101,7 @@ var doGiphySearch = function(animal) {
 
 
 
-var animalButtonClicked = function() {
+animalButtonClicked = function() {
 	$('.image-grid').empty();
 	animalSearchOffset = 0;
 	$('#progressloader').hide();
