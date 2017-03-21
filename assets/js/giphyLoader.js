@@ -4,7 +4,9 @@ var animalsArray = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish",
 	"gerbil", "pygmy goat", "chicken", "capybara", "teacup pig", "serval", 
 	"salamander", "frog"];
 
-var giphyResultArray = [];
+var giphyFixedSizedArray = [];
+var giphyOriginalArray = [];
+
 var maxResults = 50;
 var resultsPerSearch = 10;
 
@@ -49,7 +51,8 @@ var doGiphySearch = function (animal, offset) {
 	.done(function(response) {
 		var results = response.data
 		for (var i=0; i<results.length; i++) {
-			giphyResultArray.push(results[i].images.fixed_height.url);
+			giphyFixedSizedArray.push(results[i].images.fixed_height.url);
+			giphyOriginalArray.push(results[i].images.original.url);
 		}
 		displayGiphyResults();
 	})
