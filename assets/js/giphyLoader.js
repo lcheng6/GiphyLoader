@@ -11,6 +11,7 @@ var giphyOriginalArray = [];
 //The selected Animal for the search
 var selectedAnimal = "";
 var animalSearchOffset = 0;
+var giphySearchReady = true;
 
 
 var submitBtnClick = function(event) {
@@ -39,13 +40,13 @@ var displayGiphyResults = function(animal) {
 		imageNum = animalSearchOffset + i;
 		html += '<article class="image__cell is-collapsed">' +
 			'<div class="image--basic">' +
-			'<a href="#expand-jump-' + i + '">' +
-			'<img id="expand-jump-' + i + '" class="basic__img" src="' + giphyFixedSizedArray[i] + '" alt="Fashion ' + imageNum + '" />' +
+			'<a href="#expand-jump-' + imageNum + '">' +
+			'<img id="expand-jump-' + imageNum + '" class="basic__img" src="' + giphyFixedSizedArray[i] + '" alt="Fashion ' + imageNum + '" />' +
 			'</a>' +
 			'<div class="arrow--up"></div>' +
 			'</div>' +
 			'<div class="image--expand">' +
-			'<a href="#close-jump-' + i + '" class="expand__close"></a>' +
+			'<a href="#close-jump-' + imageNum + '" class="expand__close"></a>' +
 			'<img class="image--large" src="' + giphyOriginalArray[i] + '" alt="Animal ' + imageNum + '" />' +
 			'</div>' +
 			'</article>';
@@ -75,6 +76,13 @@ var displayGiphyResults = function(animal) {
 
 var doGiphySearch = function(animal) {
 	//exmpale giphy search: https://api.giphy.com/v1/gifs/search?q=bison&api_key=dc6zaTOxFJmzC&limit=10
+	if(giphySearchReady === false) {
+		return;
+	}
+	//entering into one search loop, finish it then try to do another search. 
+	giphySearchReady = false;
+	giphyFixedSizedArray = [];
+	giphyOriginalArray = [];
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10&offset=" + animalSearchOffset.toString();
 	$.ajax({
 			url: queryURL,
@@ -88,6 +96,8 @@ var doGiphySearch = function(animal) {
 			}
 			animalSearchOffset = animalSearchOffset + results.length;
 			displayGiphyResults();
+			//ready for search again
+			giphySearchReady = true;
 		})
 }
 
@@ -119,7 +129,8 @@ $(document).ready(function() {
 
 
 $(window).scroll(function() {
-	if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-		console.log("bottom!");
+	if ($(window).scrollTop() + $(window).height() <= $(document).height()) {
+		doGiphySearch(selectedAnimal);
+		console.log('bottom!')
 	}
 });
