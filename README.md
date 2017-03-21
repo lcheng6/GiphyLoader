@@ -5,4 +5,4 @@ I went one step further to create a Google Image search clone with icon, icon cl
 
 Here's a screenshot: 
 
-![alt text](https://github.com/lcheng6/GiphyLoader/screenshot.png "Logo Title Text 1")
+![alt text](https://github.com/lcheng6/GiphyLoader/blob/master/screenshot.png "Giphy Loader Screenshot")
