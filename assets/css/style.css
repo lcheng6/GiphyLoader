@@ -1,8 +1,4 @@
 body {
-	background-color: black;
-	background-image: url("../images/background.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 h1 {
 
@@ -10,4 +6,8 @@ h1 {
 
 .container {
 	/*padding-left: 0px*/
+}
+
+.btn {
+	margin:10px;
 }
