@@ -53,8 +53,9 @@ var displayGiphyResults = function(animal) {
 
 	var $cell = $('.image__cell');
 
-	//reset the click handler
+	//reset all click handlers
 	$cell.find('.image--basic').off('click');
+
 	//add the click handler back in
 	$cell.find('.image--basic').click(function() {
 		var $thisCell = $(this).closest('.image__cell');
@@ -68,6 +69,10 @@ var displayGiphyResults = function(animal) {
 		}
 	});
 
+	//reset .expand__close handler
+	$cell.find('.expand__close').off('click');
+
+	//add all .expand__close handler
 	$cell.find('.expand__close').click(function() {
 
 		var $thisCell = $(this).closest('.image__cell');
