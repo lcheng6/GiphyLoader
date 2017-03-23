@@ -34,6 +34,7 @@ var displayGiphyResults = function(animal) {
 	var html = '',
 		imageNum;
 
+	//TODO refactor this code.  
 	for (var i = 0; i < giphyFixedSizedArray.length; i++) {
 		imageNum = animalSearchOffset + i;
 		html += '<article class="image__cell is-collapsed">' +
@@ -81,7 +82,7 @@ var displayGiphyResults = function(animal) {
 	});
 }
 
-var doGiphySearch = function(animal) {
+var doGiphySearch = function(callback, animal) {
 	//exmpale giphy search: https://api.giphy.com/v1/gifs/search?q=bison&api_key=dc6zaTOxFJmzC&limit=10
 	if(giphySearchReady === false) {
 		return;
@@ -105,6 +106,9 @@ var doGiphySearch = function(animal) {
 			displayGiphyResults();
 			//ready for search again
 			giphySearchReady = true;
+			if (callback !== null) {
+				callback();
+			}
 		})
 }
 
@@ -115,7 +119,8 @@ animalButtonClicked = function() {
 	animalSearchOffset = 0;
 	$('#progressloader').hide();
 	selectedAnimal = $(this).text();
-	doGiphySearch(selectedAnimal);
+	//async.series([selectedAnimal])
+	doGiphySearch(null, selectedAnimal);
 }
 
 var loadInitialButtons = function() {
@@ -137,7 +142,7 @@ $(document).ready(function() {
 
 $(window).scroll(function() {
 	if ($(window).scrollTop() + $(window).height() <= $(document).height()) {
-		doGiphySearch(selectedAnimal);
+		doGiphySearch(null, selectedAnimal);
 		console.log('bottom!')
 	}
 });
