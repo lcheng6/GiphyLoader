@@ -39,7 +39,7 @@ var displayGiphyResults = function(animal) {
 		html += '<article class="image__cell is-collapsed">' +
 			'<div class="image--basic">' +
 			'<a href="#expand-jump-' + imageNum + '">' +
-			'<img id="expand-jump-' + imageNum + '" class="basic__img" src="' + giphyFixedSizedArray[i] + '" alt="Fashion ' + imageNum + '" />' +
+			'<img id="expand-jump-' + imageNum + '" class="basic__img" src="' + giphyFixedSizedArray[i] + '" alt="Animal ' + imageNum + '" />' +
 			'</a>' +
 			'<div class="arrow--up"></div>' +
 			'</div>' +
@@ -53,8 +53,12 @@ var displayGiphyResults = function(animal) {
 
 	var $cell = $('.image__cell');
 
+	//reset the click handler
+	$cell.find('.image--basic').off('click');
+	//add the click handler back in
 	$cell.find('.image--basic').click(function() {
 		var $thisCell = $(this).closest('.image__cell');
+		console.log('image--basic click handler')
 
 		if ($thisCell.hasClass('is-collapsed')) {
 			$cell.not($thisCell).removeClass('is-expanded').addClass('is-collapsed');
