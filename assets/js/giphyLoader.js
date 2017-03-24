@@ -1,10 +1,14 @@
 'use strict'
+
+//Giphy-Loader for loading gifs
+//Here's a list of initial animals
 var animalsArray = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish",
 	"bird", "ferret", "sugar glider", "chinchilla", "hedgehog", "hermit crab",
 	"gerbil", "pygmy goat", "chicken", "capybara", "teacup pig", "serval",
 	"salamander", "frog"
 ];
 
+//Ressults are Fixed Size and Original sized images.  
 var giphyFixedSizedArray = [];
 var giphyOriginalArray = [];
 
@@ -13,8 +17,10 @@ var selectedAnimal = "";
 var animalSearchOffset = 0;
 var giphySearchReady = true;
 
+//A function variable so that for a animal button getting clicked. 
 var animalButtonClicked; 
 
+//Clicked the submit button
 var submitBtnClick = function(event) {
 	event.preventDefault();
 	var animal = $("#animal-input").val();
@@ -30,6 +36,7 @@ var submitBtnClick = function(event) {
 
 }
 
+//Build the html code associated with 10 resultant searches
 var displayGiphyResults = function(animal) {
 	var html = '',
 		imageNum;
@@ -82,6 +89,7 @@ var displayGiphyResults = function(animal) {
 	});
 }
 
+//Execute a Giphy search, which will result in 10 results each
 var doGiphySearch = function(callback, animal) {
 	//exmpale giphy search: https://api.giphy.com/v1/gifs/search?q=bison&api_key=dc6zaTOxFJmzC&limit=10
 	if(giphySearchReady === false) {
@@ -113,12 +121,14 @@ var doGiphySearch = function(callback, animal) {
 }
 
 
-
+//handle a animal button click, to start executing search.  
 animalButtonClicked = function() {
 	$('.image-grid').empty();
 	animalSearchOffset = 0;
 	$('#progressloader').hide();
 	selectedAnimal = $(this).text();
+
+	//Load 30 images of the animal in a single go
 	async.series([
 		function(callback) {
 			doGiphySearch(callback, selectedAnimal);
