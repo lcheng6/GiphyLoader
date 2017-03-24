@@ -16,7 +16,7 @@ h1 {
 #animal-input {
   width: 300px;
   height: 35px;
-  border: none;
+  border-color:black;
   font-size: 10pt;
   float: left;
   color: #63717f;
