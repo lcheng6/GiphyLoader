@@ -144,6 +144,7 @@ animalButtonClicked = function() {
 	//doGiphySearch(null, selectedAnimal);
 }
 
+//load the initial buttons, which is the array of animals 
 var loadInitialButtons = function() {
 	for (var i = 0; i < animalsArray.length; i++) {
 		var animal = animalsArray[i];
@@ -155,12 +156,14 @@ var loadInitialButtons = function() {
 	}
 }
 
+//get all the animals 
 $(document).ready(function() {
 	loadInitialButtons();
 	$("#addAnimal").on("click", submitBtnClick);
 });
 
 
+//This is the bottom detector, as soon as we hit bottom, load more images. 
 $(window).scroll(function() {
 	if ($(window).scrollTop() + $(window).height() <= $(document).height()) {
 		doGiphySearch(null, selectedAnimal);
