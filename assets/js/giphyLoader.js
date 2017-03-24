@@ -119,8 +119,19 @@ animalButtonClicked = function() {
 	animalSearchOffset = 0;
 	$('#progressloader').hide();
 	selectedAnimal = $(this).text();
-	//async.series([selectedAnimal])
-	doGiphySearch(null, selectedAnimal);
+	async.series([
+		function(callback) {
+			doGiphySearch(callback, selectedAnimal);
+		}, 
+		function(callback) {
+			doGiphySearch(callback, selectedAnimal);
+		}, 
+		function(callback) {
+			doGiphySearch(callback, selectedAnimal);
+		}], function(err) {
+			console.log("Error: " + err);
+		})
+	//doGiphySearch(null, selectedAnimal);
 }
 
 var loadInitialButtons = function() {
