@@ -1,7 +1,7 @@
 # GiphyLoader
 ### George Washington Coding Bootcamp Home work
-Application uses Ajax calls to search Gifs for a particular animal and display the gif results
-I went one step further to create a Google Image search clone with icon, icon click handler, automatic query for additional query results when the bottom of the window is reached, and panel pull down that displays the full image. 
+Application uses Ajax calls to search Gifs for a particular animal and display the gif results. 
+I went one step further to create a Google Image search clone with icon, icon click handler, automatic query for additional query results when user reaches the bottom of the window, and panel pull down that displays the full image. 
 
 Here's a screenshot: 
 
